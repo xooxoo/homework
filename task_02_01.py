@@ -1,4 +1,3 @@
-
 def is_palindrome(s):
     s = str(s).lower()
     b = list(''.join(s))
