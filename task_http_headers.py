@@ -1,7 +1,7 @@
 import json
 
-# headers = 'headers-1.txt'
-# results = 'results.json'
+#headers = 'headers-1.txt'
+#results = 'results-2.json'
 
 
 def http_headers_to_json(headers, results):
@@ -28,6 +28,6 @@ def http_headers_to_json(headers, results):
                     dick.setdefault(line[0], line[1])
     with open(results, 'w') as res:
         json.dump(dick, res)
-    return
+    return res
 
-# http_headers_to_json(headers,results)
+#http_headers_to_json(headers,results)
