@@ -28,6 +28,8 @@ def http_headers_to_json(headers, results):
             results = 'results-{}.json'.format(i)
             with open(results, 'w') as res:
                 json.dump(dick, res)
+    return
+
 """
     я тут немного запутался, но этот кусок на случай, если второй аргумент будет просто results.json,
     то я его переделаю на results-i в соответствии с заголовком
