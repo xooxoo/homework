@@ -1,8 +1,5 @@
 import json
 
-#headers = 'headers-1.txt'
-#results = 'results-2.json'
-
 
 def http_headers_to_json(headers, results):
     with open(headers) as fuck:
@@ -26,8 +23,15 @@ def http_headers_to_json(headers, results):
                     dick[line[0]] = line[1]
                 else:
                     dick.setdefault(line[0], line[1])
-    with open(results, 'w') as res:
-        json.dump(dick, res)
-    return res
-
-#http_headers_to_json(headers,results)
+    for i in headers:
+        if i.isdigit():
+            results = 'results-{}.json'.format(i)
+            with open(results, 'w') as res:
+                json.dump(dick, res)
+"""
+    я тут немного запутался, но этот кусок на случай, если второй аргумент будет просто results.json,
+    то я его переделаю на results-i в соответствии с заголовком
+"""
+# headers = 'headers-2.txt'
+# results = 'results'
+# http_headers_to_json(headers,results)
