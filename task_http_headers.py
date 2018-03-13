@@ -5,16 +5,19 @@ def http_headers_to_json(headers, results):
     with open(headers) as fuck:
         dick = {}
         for i in fuck:
-            line = i.strip().split(':', 1)
-            if 'HTTP' in i and 'H' == i[0]:
+            line = i.strip().split(': ', 1)
+            if 'HTTP/1.1' in i and 'H' == i[0]:
                 for j in line:
-                    j = j.split(' ')
+                    j = j.split(' ', 2)
                     dick.setdefault('protocol', j[0])
                     dick.setdefault('status_code', j[1])
                     dick.setdefault('status_message', j[2])
+            elif line == ['']:
+                pass
             elif 'HTTP' in i and 'H' != i[0]:
                 for j in line:
                     j = j.split(' ')
+                    print(j)
                     dick.setdefault('method', j[0])
                     dick.setdefault('uri', j[1])
                     dick.setdefault('protocol', j[2])
@@ -23,17 +26,7 @@ def http_headers_to_json(headers, results):
                     dick[line[0]] = line[1]
                 else:
                     dick.setdefault(line[0], line[1])
-    for i in headers:
-        if i.isdigit():
-            results = 'results-{}.json'.format(i)
-            with open(results, 'w') as res:
-                json.dump(dick, res)
+    with open(results, 'w') as res:
+        json.dump(dick, res)
     return
 
-"""
-    я тут немного запутался, но этот кусок на случай, если второй аргумент будет просто results.json,
-    то я его переделаю на results-i в соответствии с заголовком
-"""
-# headers = 'headers-2.txt'
-# results = 'results'
-# http_headers_to_json(headers,results)
