@@ -17,12 +17,9 @@ def login_required(func):
                 token = make_token(username, password)
                 if check == token:
                     return func(*args, **kwargs)
-                    break
-                else:
-                    pass
-
-
-
+                i -= 1
+        return func(*args, **kwargs)
+    return wrapper
 
 
 
